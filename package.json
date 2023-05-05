@@ -1,0 +1,24 @@
+{
+  "name": "t1-partner-gateway-auth-lambda",
+  "version": "1.0.0",
+  "description": "t1-partner-gateway-auth-lambda",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patipatoyun/t1-partner-gateway-auth-lambda.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patipatoyun/t1-partner-gateway-auth-lambda/issues"
+  },
+  "homepage": "https://github.com/patipatoyun/t1-partner-gateway-auth-lambda#readme",
+  "dependencies": {
+    "keycloak-backend": "^4.0.1"
+  }
+}
