@@ -1,8 +1,5 @@
-const keycloakClient = require('keycloak-backend').Keycloak;
-const keycloak = new keycloakClient({
-    "realm": "integration-np",
-    "keycloak_base_url": "https://the1-corporate-iam.cloud-iam.com/auth"
-})
+const axios = require('axios');
+const keycloakUrl = 'https://the1-corporate-iam.cloud-iam.com/auth/realms/integration-np/protocol/openid-connect/userinfo'
 
 function generatePolicy(principalId, effect, resource, accessToken, errorMessage) {
     let authResponse = {
@@ -37,12 +34,19 @@ function extractTokenFromHeader(event, callback) {
 }
 
 async function verifyKeyCloakUser(accessToken, callback) {
+    let reqHeader = {
+        headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            "accept": "application/json",
+            "authorization": `Bearer ${accessToken}`
+        }
+    }
     try {
-        const resp = await keycloak.jwt.verify(accessToken);
+        let resp = await axios.get(keycloakUrl, reqHeader)
         return resp
     }
     catch (err) {
-        console.error('verify KeyCloakUser error: ', err);
+        console.error('verifyUserkeycloak error:' + err);
         callback("Unauthorized");
     }
 }
