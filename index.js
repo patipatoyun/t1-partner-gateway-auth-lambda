@@ -30,7 +30,7 @@ function extractTokenFromHeader(event, callback) {
     let token = event.authorizationToken;
     let match = token.match(/^Bearer (.*)$/);
     if (!token || !match || match.length < 2) {
-        console.log('extractTokenFromHeader error: ' + token);
+        console.error('extractTokenFromHeader error: ' + token);
         callback("Unauthorized")
     }
     return match[1];
