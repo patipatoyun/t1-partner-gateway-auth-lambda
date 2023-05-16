@@ -55,9 +55,9 @@ exports.handler = function (event, context, callback) {
     let token = extractTokenFromHeader(event, callback);
     verifyKeyCloakUser(token, callback).then(result => {
         if (result.isExpired == true) {
-            callback(null, generatePolicy('user', 'Deny', event.methodArn, event.authorizationToken, errorMsgDenyPolicy(error)));
+            callback(null, generatePolicy('user', 'Deny', event.methodArn, event.authorizationToken, 'Token Expired'));
         } else {
-            callback(null, generatePolicy('user', 'Allow', 'event.methodArn', event.authorizationToken));
+            callback(null, generatePolicy('user', 'Allow', event.methodArn, event.authorizationToken));
         }
     })
 }
