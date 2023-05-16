@@ -42,7 +42,7 @@ async function verifyKeyCloakUser(accessToken, callback) {
         return resp
     }
     catch (err) {
-        console.error('verify KeyCloakUser error: ', err);
+        console.error('verifyKeyCloakUser error: ', err);
         callback("Unauthorized");
     }
 }
